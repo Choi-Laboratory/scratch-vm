@@ -19,7 +19,7 @@ const iconURI = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6
 class Turtlebot {
 
     constructor(){
-        this.ros_ = new ROSLIB.Ros({url:'wss://192.168.11.11:9090'});
+        this.ros_ = new ROSLIB.Ros({url:'ws://192.168.11.11:9090'});
         this.ros_.on('connection', function() { console.log('Connected to rosbridge server.');});
         this.ros_.on('error', function(error) { console.log('Error connecting to rosbridge server: ', error);});
         this.ros_.on('close', function() {      console.log('Connection of rosbridge was closed.');});
@@ -41,7 +41,7 @@ class Turtlebot {
     }
 
     setRosIp(ipAddress){
-        this.ros_ = new ROSLIB.Ros({url: 'wss://' + ipAddress + ':9090'});
+        this.ros_ = new ROSLIB.Ros({url: 'ws://' + ipAddress + ':9090'});
         this.ros_.on('connection', function() { console.log('Connected to rosbridge server.');});
         this.ros_.on('error', function(error) { console.log('Error connecting to rosbridge server: ', error);});
         this.ros_.on('close', function() {      console.log('Connection of rosbridge was closed.');});
