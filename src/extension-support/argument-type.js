@@ -36,7 +36,17 @@ const ArgumentType = {
     /**
      * MIDI note number with note picker (piano) field
      */
-    NOTE: 'note'
+    NOTE: 'note',
+
+    /**
+     * MIDI note number with note picker (piano) field
+     */
+    PERCENT: 'percent',
+
+    /**
+     * MIDI note number with note picker (piano) field
+     */
+    UNTIANGLE: 'untiangle'
 };
 
 module.exports = ArgumentType;
