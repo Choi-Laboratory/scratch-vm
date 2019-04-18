@@ -70,7 +70,15 @@ const ArgumentTypeMap = (() => {
     map[ArgumentType.NOTE] = {
         shadowType: 'note',
         fieldType: 'NOTE'
-    };
+	};
+	map[ArgumentType.PERCENT] = {
+		shadowType: 'extension_percent',
+		fieldType: 'NUM'
+	};
+	map[ArgumentType.UNTIANGLE] = {
+		shadowType: 'extension_untiangle',
+		fieldType: 'NUM'
+	};
     return map;
 })();
 
