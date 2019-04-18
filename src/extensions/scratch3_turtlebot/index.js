@@ -11,7 +11,7 @@ const MathUtil       = require('../../util/math-util');
 const RenderedTarget = require('../../sprites/rendered-target');
 const log            = require('../../util/log');
 const StageLayering  = require('../../engine/stage-layering');
-const WEBVideoViewer = require('./web_video_viewer');
+//const WEBVideoViewer = require('./web_video_viewer');
 
 const iconURI = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAFWUlEQVRIS61We0xTZxQ/X+9te/sQKkhrQB7bTDSK1lDEEN9OZRkxMjDMiCEqAo2CcVuyuSXqNo2vGLYZ4vSPLcYlJkMckyIP/4D4DxEpD6XoDEGNmOiq0Fqgt697v+V8pQwdCsk8yU1u7ved8zuP3znnEniLDAwMaM6fOTPH5XZbRv1+cygYXOj3+2N4jhNVgnBfp9P16LXa22aL5X5BQYHrTabIZAeUUnLk0KE0R2/vpkGXK+eZ0znf4/EoA4EAcBxHZFkGQgiNioqCWbGxT41xcfUJ8fE1O4qKbqSnp3tft/kfEJvNpm2qqyts7+qyPn32zDw6OgpKpRJUKhUoFIpxfUopIGgwGARBECA2JubJvLlzqz/MyqosLS3tnwj0CkhVVZW+6tKlg7cdjhKX221AZQQgRAGUypNmA8+CoSD4/X4Q1GpISUy0Wffu/Xrbtm29EYVxELvdrjxy+PDhbofjc1EUNVqtlt1Bj6cSQgimjwFhdAvmzastKy3dn19Y+BB1x0E+KysrqmtsPOXyeGJm6HTMropFMWnZXsFFRzBt6A4CUVmGdIvl7NFjx740m82jzELFiROLLtfU/Hq/ry8di4mGZxoMoNfrpxWNghDwer0w6HKztGIdY2NjX65dtWr32fPnqwmllMvNydnX1d1dgaGq1GoWgclkAl6pBGTSVIJOofdOpxO8Ph9Lj8fjgcyMjMsFhYXl5Ifjx1Oampt/a+/sXIFRyJSCWqUCk9EICp5nylMKppRSePH8OYx6vcBxPIyMDMOchISX61av3kL2l5Wtab15s+HBo0dCVFQ0SLLEQIxGI3DTBGGRTABBqodCIZBCIXlLXt73pHzPnjJbff2PgVCIU2N6xiL5vyAY/fDwsJy1fn0DKd616+fGpqYSwnEKjuPeKYhXFGnm0gw7Kdi69VJrW9unkiS9cxDR56NpixffISVFRecarl8vJoSMgwhYE5MJFBw3rcKzXqIUnmPhRRGQ0ijjkZRbrfvqGhsr/GM1wQLyPA+zTSZG5+lSWA6F4G+nE0S/fxwEa7Jh3boGUma1rrlltzc8ePxYwE5Howik1+nYA8ict3AYfcYHm9EzMsJuRtglS5Kcl5t7JNwnLS0Xb9ntK6OjkcIySxECRWYSvr8+wyJnYyOBEQYdwlTxvBI8I8OQFOkT7Pgtubn72traKpRqNViWLGF6CIZ5RkVZktjgi0wxjAyZqFSpwnfYFAwD4Pfee/dg4MkTWLlixeWC7dvLI7Nr4e/V1b/81de37OOsLEhdsABEb3j3+AMBNmLSMjLCxrCPBAEe9vfD7c5O1rgIgN8FrZYZ//PaNYiJjnZv3LBh90+VlVdemcI1Ntsp0eeLydu8GeJmxYFP9ELA54fEpCRYu3EjUKCsZjq9Hu46HHCjuZktLBTcJThSauvrYXBoCJZnZp49fvLkV6mpqSPjIC0tLXzF6dPftrW3fzHTYBA2Z2eDVhAggCOc0nDOx4qMb6zgY5uS5zh2dr25GXru3gWL2VxbbLXuL3x9n+Clq1evzrh44cLBjo6O4qTZCYb3PkqDgbggBEGC918IkOLSgMiHB2YEhC1kQqCjuxt6HA74ICWlrrSk5JvtO3f2REg56Y6vrakpvHOnp9THSUtcVGQpN4AGNBIPFK0i2wAgGB6CbEXLkjSQnJx8JSc7u3LH23b8xHY4cOCAxWHv3jTqcn/iHByaPzTykg8S+V+GUQparZaajManMdHRjUnJyX98d/Tojfj4+Kn/ViYCtba2aqqrqxOHh92Lgv7Q0mAgEB8IBDScQhFUaTQvBLXaMUOn61q2fHl/fn7+0Jt69h+a0LqPu9pEAgAAAABJRU5ErkJggg==';
 
@@ -98,7 +98,7 @@ class Scratch3TurtleBotBlocks {
         this.runtime_ = runtime;
         this.runtime_.on('PROJECT_STOP_ALL', this.stopProgram.bind(this));
         this.turtlebot_ = new Turtlebot();
-        this.viewer_ = new WEBVideoViewer();
+        //this.viewer_ = new WEBVideoViewer();
     }
 
     static get STATE_KEY () { return 'scratch.turtlebot'; }
@@ -116,6 +116,7 @@ class Scratch3TurtleBotBlocks {
         else if(String(args.TURTLEBOT_NAME) == "TurtleBot_8"){  this.turtlebot_.setRosIp('192.168.1.80');  }
         else if(String(args.TURTLEBOT_NAME) == "TurtleBot_9"){  this.turtlebot_.setRosIp('192.168.1.90');  }
         else if(String(args.TURTLEBOT_NAME) == "TurtleBot_10"){ this.turtlebot_.setRosIp('192.168.1.100'); }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_11"){ this.turtlebot_.setRosIp('192.168.1.110'); }
     }
 
     closeROSIP(args){
@@ -129,6 +130,7 @@ class Scratch3TurtleBotBlocks {
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_8"){  this.turtlebot_.closeRosIp('192.168.1.80');  }
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_9"){  this.turtlebot_.closeRosIp('192.168.1.90');  }
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_10"){ this.turtlebot_.closeRosIp('192.168.1.100'); }
+      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_11"){ this.turtlebot_.closeRosIp('192.168.1.110'); }
     }
 
     stopMotion (args) {
@@ -208,7 +210,7 @@ class Scratch3TurtleBotBlocks {
 		if (ip == null) {
 			ip = 'localhost'
 		}
-		this.viewer_.selectImageURL(ip);
+		//this.viewer_.selectImageURL(ip);
 	}
 
     getInfo () {
@@ -277,7 +279,7 @@ class Scratch3TurtleBotBlocks {
                     opcode: 'pubAngle',
                     text: formatMessage({id: 'turtlebot.pubAngle', default: '[TURTLEBOT_ANGLE] に角度を指定　--マイナスが右回転'}),
                     blockType: BlockType.COMMAND,
-                    arguments: { TURTLEBOT_ANGLE:{type: ArgumentType.ANGLE, defaultValue:formatMessage({id:'turtlebot.angle',　default:'90'})}}
+                    arguments: { TURTLEBOT_ANGLE:{type: ArgumentType.UNTIANGLE, defaultValue:formatMessage({id:'turtlebot.angle',　default:'90'})}}
                 },
                 {
                     opcode: 'boolBumper',
@@ -299,7 +301,7 @@ class Scratch3TurtleBotBlocks {
 				}
             ],
             menus: {
-                TURTLEBOT_NAME: ["TurtleBot_1","TurtleBot_2","TurtleBot_3","TurtleBot_4","TurtleBot_5","TurtleBot_6","TurtleBot_7","TurtleBot_8","TurtleBot_9","TurtleBot_10"],
+                TURTLEBOT_NAME: ["TurtleBot_1","TurtleBot_2","TurtleBot_3","TurtleBot_4","TurtleBot_5","TurtleBot_6","TurtleBot_7","TurtleBot_8","TurtleBot_9","TurtleBot_10","TurtleBot_11"],
                 TURTLEBOT_LED: ["消灯","赤","黃","緑"],
                 TURTLEBOT_SOUND: ["スイッチON","スイッチOFF","充電中","ボタン","エラー","休憩","驚き"],
                 TURTLEBOT_BUMPER: ["前方","左","右"],
