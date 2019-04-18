@@ -283,7 +283,7 @@ class Scratch3RuloBlocks extends Scratch3RuloBase {
                     text: '[Vacuum_VALUE]% の強さで掃除する',
                     blockType: BlockType.COMMAND,
                     arguments: {
-                        Vacuum_VALUE: {type:ArgumentType.ANGLE, defaultValue:'50'}
+                        Vacuum_VALUE: {type:ArgumentType.PERCENT, defaultValue:'50'}
                     }
                 },
                 {
