@@ -106,6 +106,7 @@ class Scratch3TurtleBotBlocks {
     stopProgram (){ this.turtlebot_.publishScratchRos("motion_stop:True"); }
 
     setROSIP (args) {
+        if(String(args.TURTLEBOT_NAME) == "TurtleBot"){       this.turtlebot_.setRosIp('127.0.0.1');  }
         if(String(args.TURTLEBOT_NAME) == "TurtleBot_1"){       this.turtlebot_.setRosIp('192.168.1.10');  }
         else if(String(args.TURTLEBOT_NAME) == "TurtleBot_2"){  this.turtlebot_.setRosIp('192.168.1.20');  }
         else if(String(args.TURTLEBOT_NAME) == "TurtleBot_3"){  this.turtlebot_.setRosIp('192.168.1.30');  }
@@ -120,7 +121,8 @@ class Scratch3TurtleBotBlocks {
     }
 
     closeROSIP(args){
-      if(String(args.TURTLEBOT_NAME) == "TurtleBot_1"){       this.turtlebot_.closeRosIp('192.168.1.10');  }
+      if(String(args.TURTLEBOT_NAME) == "TurtleBot"){     this.turtlebot_.closeRosIp('127.0.0.1');}
+      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_1"){       this.turtlebot_.closeRosIp('192.168.1.10');  }
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_2"){  this.turtlebot_.closeRosIp('192.168.1.20');  }
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_3"){  this.turtlebot_.closeRosIp('192.168.1.30');  }
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_4"){  this.turtlebot_.closeRosIp('192.168.1.40');  }
@@ -231,13 +233,13 @@ class Scratch3TurtleBotBlocks {
                     opcode: 'setROSIP',
                     text: formatMessage({id: 'turtlebot.setROSIP', default: '[TURTLEBOT_NAME] に接続する'}),
                     blockType: BlockType.COMMAND,
-                    arguments: { TURTLEBOT_NAME: {type:ArgumentType.STRING, menu:'TURTLEBOT_NAME', defaultValue:"TurtleBot_1"}}
+                    arguments: { TURTLEBOT_NAME: {type:ArgumentType.STRING, menu:'TURTLEBOT_NAME', defaultValue:"TurtleBot"}}
                 },
                 {
                   opcode: 'closeROSIP',
                   text: formatMessage({id: 'turtlebot.closeROSIP', default: '[TURTLEBOT_NAME] を切断する'}),
                   blockType: BlockType.COMMAND,
-                  arguments: { TURTLEBOT_NAME: {type:ArgumentType.STRING, menu:'TURTLEBOT_NAME', defaultValue:"TurtleBot_1"}}
+                  arguments: { TURTLEBOT_NAME: {type:ArgumentType.STRING, menu:'TURTLEBOT_NAME', defaultValue:"TurtleBot"}}
                 },
                 {
                     opcode: 'stopMotion',
@@ -301,7 +303,7 @@ class Scratch3TurtleBotBlocks {
 				}
             ],
             menus: {
-                TURTLEBOT_NAME: ["TurtleBot_1","TurtleBot_2","TurtleBot_3","TurtleBot_4","TurtleBot_5","TurtleBot_6","TurtleBot_7","TurtleBot_8","TurtleBot_9","TurtleBot_10","TurtleBot_11"],
+                TURTLEBOT_NAME: ["TurtleBot","TurtleBot_1","TurtleBot_2","TurtleBot_3","TurtleBot_4","TurtleBot_5","TurtleBot_6","TurtleBot_7","TurtleBot_8","TurtleBot_9","TurtleBot_10","TurtleBot_11"],
                 TURTLEBOT_LED: ["消灯","赤","黃","緑"],
                 TURTLEBOT_SOUND: ["スイッチON","スイッチOFF","充電中","ボタン","エラー","休憩","驚き"],
                 TURTLEBOT_BUMPER: ["前方","左","右"],
