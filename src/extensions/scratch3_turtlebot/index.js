@@ -118,11 +118,12 @@ class Scratch3TurtleBotBlocks {
         else if(String(args.TURTLEBOT_NAME) == "TurtleBot_9"){  this.turtlebot_.setRosIp('192.168.1.90');  }
         else if(String(args.TURTLEBOT_NAME) == "TurtleBot_10"){ this.turtlebot_.setRosIp('192.168.1.100'); }
         else if(String(args.TURTLEBOT_NAME) == "TurtleBot_11"){ this.turtlebot_.setRosIp('192.168.1.110'); }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_test"){ this.turtlebot_.setRosIp('192.168.1.5'); }
     }
 
     closeROSIP(args){
       if(String(args.TURTLEBOT_NAME) == "TurtleBot"){     this.turtlebot_.closeRosIp('127.0.0.1');}
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_1"){       this.turtlebot_.closeRosIp('192.168.1.10');  }
+      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_1"){  this.turtlebot_.closeRosIp('192.168.1.10');  }
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_2"){  this.turtlebot_.closeRosIp('192.168.1.20');  }
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_3"){  this.turtlebot_.closeRosIp('192.168.1.30');  }
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_4"){  this.turtlebot_.closeRosIp('192.168.1.40');  }
@@ -133,6 +134,7 @@ class Scratch3TurtleBotBlocks {
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_9"){  this.turtlebot_.closeRosIp('192.168.1.90');  }
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_10"){ this.turtlebot_.closeRosIp('192.168.1.100'); }
       else if(String(args.TURTLEBOT_NAME) == "TurtleBot_11"){ this.turtlebot_.closeRosIp('192.168.1.110'); }
+      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_test"){ this.turtlebot_.closeRosIp('192.168.1.5'); }
     }
 
     stopMotion (args) {
@@ -303,7 +305,7 @@ class Scratch3TurtleBotBlocks {
 				}
             ],
             menus: {
-                TURTLEBOT_NAME: ["TurtleBot","TurtleBot_1","TurtleBot_2","TurtleBot_3","TurtleBot_4","TurtleBot_5","TurtleBot_6","TurtleBot_7","TurtleBot_8","TurtleBot_9","TurtleBot_10","TurtleBot_11"],
+                TURTLEBOT_NAME: ["TurtleBot","TurtleBot_1","TurtleBot_2","TurtleBot_3","TurtleBot_4","TurtleBot_5","TurtleBot_6","TurtleBot_7","TurtleBot_8","TurtleBot_9","TurtleBot_10","TurtleBot_11","TurtleBot_test"],
                 TURTLEBOT_LED: ["消灯","赤","黃","緑"],
                 TURTLEBOT_SOUND: ["スイッチON","スイッチOFF","充電中","ボタン","エラー","休憩","驚き"],
                 TURTLEBOT_BUMPER: ["前方","左","右"],
