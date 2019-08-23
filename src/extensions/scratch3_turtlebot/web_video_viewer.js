@@ -14,7 +14,7 @@ class WEBVideoViewer {
     this._web_video_canvas.top = '0px';
     this._web_video_context = this._web_video_canvas.getContext('2d');
     this._image = document.createElement('img');
-    this._image.src = 'http://localhost:8080/stream?topic=/image_raw';
+    this._image.src = 'http://localhost:8080/stream?topic=/usb_cam/image_raw';
     this._image.id = 'web_video';
     this._image.crossOrigin = 'Anonymous';
     this._web_video_canvas.width = parseInt(this._background.style.width, 10);
@@ -56,7 +56,7 @@ class WEBVideoViewer {
   }
 
   selectImageURL(ip) {
-    let url = 'http://' + ip + ':8080/stream?topic=/image_raw'
+    let url = 'http://' + ip + ':8080/stream?topic=/usb_cam/image_raw'
     console.log(url);
     if (this.canDrawCanvas(url)) {
       this._image.src = url;

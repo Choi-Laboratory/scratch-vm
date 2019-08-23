@@ -11,7 +11,7 @@ const MathUtil       = require('../../util/math-util');
 const RenderedTarget = require('../../sprites/rendered-target');
 const log            = require('../../util/log');
 const StageLayering  = require('../../engine/stage-layering');
-const WEBVideoViewer = require('./web_video_viewer');
+//const WEBVideoViewer = require('./web_video_viewer');
 
 const iconURI = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAFWUlEQVRIS61We0xTZxQ/X+9te/sQKkhrQB7bTDSK1lDEEN9OZRkxMjDMiCEqAo2CcVuyuSXqNo2vGLYZ4vSPLcYlJkMckyIP/4D4DxEpD6XoDEGNmOiq0Fqgt697v+V8pQwdCsk8yU1u7ved8zuP3znnEniLDAwMaM6fOTPH5XZbRv1+cygYXOj3+2N4jhNVgnBfp9P16LXa22aL5X5BQYHrTabIZAeUUnLk0KE0R2/vpkGXK+eZ0znf4/EoA4EAcBxHZFkGQgiNioqCWbGxT41xcfUJ8fE1O4qKbqSnp3tft/kfEJvNpm2qqyts7+qyPn32zDw6OgpKpRJUKhUoFIpxfUopIGgwGARBECA2JubJvLlzqz/MyqosLS3tnwj0CkhVVZW+6tKlg7cdjhKX221AZQQgRAGUypNmA8+CoSD4/X4Q1GpISUy0Wffu/Xrbtm29EYVxELvdrjxy+PDhbofjc1EUNVqtlt1Bj6cSQgimjwFhdAvmzastKy3dn19Y+BB1x0E+KysrqmtsPOXyeGJm6HTMropFMWnZXsFFRzBt6A4CUVmGdIvl7NFjx740m82jzELFiROLLtfU/Hq/ry8di4mGZxoMoNfrpxWNghDwer0w6HKztGIdY2NjX65dtWr32fPnqwmllMvNydnX1d1dgaGq1GoWgclkAl6pBGTSVIJOofdOpxO8Ph9Lj8fjgcyMjMsFhYXl5Ifjx1Oampt/a+/sXIFRyJSCWqUCk9EICp5nylMKppRSePH8OYx6vcBxPIyMDMOchISX61av3kL2l5Wtab15s+HBo0dCVFQ0SLLEQIxGI3DTBGGRTABBqodCIZBCIXlLXt73pHzPnjJbff2PgVCIU2N6xiL5vyAY/fDwsJy1fn0DKd616+fGpqYSwnEKjuPeKYhXFGnm0gw7Kdi69VJrW9unkiS9cxDR56NpixffISVFRecarl8vJoSMgwhYE5MJFBw3rcKzXqIUnmPhRRGQ0ijjkZRbrfvqGhsr/GM1wQLyPA+zTSZG5+lSWA6F4G+nE0S/fxwEa7Jh3boGUma1rrlltzc8ePxYwE5Howik1+nYA8ict3AYfcYHm9EzMsJuRtglS5Kcl5t7JNwnLS0Xb9ntK6OjkcIySxECRWYSvr8+wyJnYyOBEQYdwlTxvBI8I8OQFOkT7Pgtubn72traKpRqNViWLGF6CIZ5RkVZktjgi0wxjAyZqFSpwnfYFAwD4Pfee/dg4MkTWLlixeWC7dvLI7Nr4e/V1b/81de37OOsLEhdsABEb3j3+AMBNmLSMjLCxrCPBAEe9vfD7c5O1rgIgN8FrZYZ//PaNYiJjnZv3LBh90+VlVdemcI1Ntsp0eeLydu8GeJmxYFP9ELA54fEpCRYu3EjUKCsZjq9Hu46HHCjuZktLBTcJThSauvrYXBoCJZnZp49fvLkV6mpqSPjIC0tLXzF6dPftrW3fzHTYBA2Z2eDVhAggCOc0nDOx4qMb6zgY5uS5zh2dr25GXru3gWL2VxbbLXuL3x9n+Clq1evzrh44cLBjo6O4qTZCYb3PkqDgbggBEGC918IkOLSgMiHB2YEhC1kQqCjuxt6HA74ICWlrrSk5JvtO3f2REg56Y6vrakpvHOnp9THSUtcVGQpN4AGNBIPFK0i2wAgGB6CbEXLkjSQnJx8JSc7u3LH23b8xHY4cOCAxWHv3jTqcn/iHByaPzTykg8S+V+GUQparZaajManMdHRjUnJyX98d/Tojfj4+Kn/ViYCtba2aqqrqxOHh92Lgv7Q0mAgEB8IBDScQhFUaTQvBLXaMUOn61q2fHl/fn7+0Jt69h+a0LqPu9pEAgAAAABJRU5ErkJggg==';
 
@@ -38,12 +38,7 @@ class Turtlebot {
         this.isfrontBumperHit = false;
         this.isLeftBumperHit  = false;
         this.isRightBumperHit = false;
-        this.isRobotPoseX = 0.0;
-        this.isRobotPoseY = 0.0;
-        this.isRobotAngle = 0.0;
-        this.isQrdistance = 0;
-        this.isQrangle = 0.0;
-        this.isQrrecod = "";
+        this.isXtionSenserDistance = 0.0;
     }
 
     setRosIp(ipAddress){
@@ -84,23 +79,10 @@ class Turtlebot {
         else if(this.isDataContainKeyword(receivedData,'button_2:true')){   this.isButton2Push = true;  }
         else if(this.isDataContainKeyword(receivedData,'button_2:false')){  this.isButton2Push = false; }
 
-        else if(this.isDataContainKeyword(receivedData,'robot_pose_x:')){
-          this.isRobotPoseX = Number(receivedData.slice(13));
-        }
-        else if(this.isDataContainKeyword(receivedData,'robot_pose_y:')){
-          this.isRobotPoseY = Number(receivedData.slice(13));
-        }
-        else if(this.isDataContainKeyword(receivedData,'robot_angle:')){
-          this.isRobotAngle = Number(receivedData.slice(12));
-        }
-        else if(this.isDataContainKeyword(receivedData,'qr_distance:')){
-          this.isQrdistance = Number(receivedData.slice(12));
-        }
-        else if(this.isDataContainKeyword(receivedData,'qr_angle:')){
-          this.isQrangle = Number(receivedData.slice(9));
-        }
-        else if(this.isDataContainKeyword(receivedData,'qr_recode:')){
-          this.isQrrecod = String(receivedData.slice(10));
+        else if(this.isDataContainKeyword(receivedData,'xtion_senser_distance:')){//距離値取得
+          this.isXtionSenserDistance = Number(receivedData.slice(22));
+          console.log('//xtion_senser_distance');
+          console.log(this.isXtionSenserDistance);
         }
 
     }
@@ -124,7 +106,7 @@ class Scratch3TurtleBotBlocks {
         this.runtime_ = runtime;
         //this.runtime_.on('PROJECT_STOP_ALL', this.stopProgram.bind(this));
         this.turtlebot_ = new Turtlebot();
-        this.viewer_ = new WEBVideoViewer();
+        //this.viewer_ = new WEBVideoViewer();
     }
 
     static get STATE_KEY () { return 'scratch.turtlebot'; }
@@ -132,19 +114,19 @@ class Scratch3TurtleBotBlocks {
     stopProgram (){ this.turtlebot_.publishScratchRos("motion_stop:True"); }
 
     setROSIP (args) {
-      if(String(args.TURTLEBOT_NAME) == "TurtleBot"){       this.turtlebot_.setRosIp('127.0.0.1');  }
-      if(String(args.TURTLEBOT_NAME) == "TurtleBot_1"){       this.turtlebot_.setRosIp('192.168.1.10');  }
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_2"){  this.turtlebot_.setRosIp('192.168.1.20');  }
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_3"){  this.turtlebot_.setRosIp('192.168.1.30');  }
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_4"){  this.turtlebot_.setRosIp('192.168.1.40');  }
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_5"){  this.turtlebot_.setRosIp('192.168.1.50');  }
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_6"){  this.turtlebot_.setRosIp('192.168.1.60');  }
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_7"){  this.turtlebot_.setRosIp('192.168.1.70');  }
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_8"){  this.turtlebot_.setRosIp('192.168.1.80');  }
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_9"){  this.turtlebot_.setRosIp('192.168.1.90');  }
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_10"){ this.turtlebot_.setRosIp('192.168.1.100'); }
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_11"){ this.turtlebot_.setRosIp('192.168.1.110'); }
-      else if(String(args.TURTLEBOT_NAME) == "TurtleBot_test"){ this.turtlebot_.setRosIp('192.168.1.5'); }
+        if(String(args.TURTLEBOT_NAME) == "TurtleBot"){       this.turtlebot_.setRosIp('127.0.0.1');  }
+        if(String(args.TURTLEBOT_NAME) == "TurtleBot_1"){       this.turtlebot_.setRosIp('192.168.1.10');  }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_2"){  this.turtlebot_.setRosIp('192.168.1.20');  }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_3"){  this.turtlebot_.setRosIp('192.168.1.30');  }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_4"){  this.turtlebot_.setRosIp('192.168.1.40');  }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_5"){  this.turtlebot_.setRosIp('192.168.1.50');  }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_6"){  this.turtlebot_.setRosIp('192.168.1.60');  }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_7"){  this.turtlebot_.setRosIp('192.168.1.70');  }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_8"){  this.turtlebot_.setRosIp('192.168.1.80');  }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_9"){  this.turtlebot_.setRosIp('192.168.1.90');  }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_10"){ this.turtlebot_.setRosIp('192.168.1.100'); }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_11"){ this.turtlebot_.setRosIp('192.168.1.110'); }
+        else if(String(args.TURTLEBOT_NAME) == "TurtleBot_test"){ this.turtlebot_.setRosIp('192.168.1.5'); }
     }
 
     closeROSIP(args){
@@ -221,6 +203,13 @@ class Scratch3TurtleBotBlocks {
         return new Promise(resolve => { setTimeout(() => {resolve();}, sleepTime); });
     }
 
+    pubForward_backward_moving_speed (args) {
+
+        this.turtlebot_.publishScratchRos("S_Speed:"+String(args.FORWARD_BACKWARD_MOVING_SPEED));
+
+    }
+
+
     pubAngle (args) {
         this.turtlebot_.publishScratchRos("T:"+String(args.TURTLEBOT_ANGLE));
 
@@ -232,53 +221,22 @@ class Scratch3TurtleBotBlocks {
         var sleepTime    =  ((targetAngle / stepNum * increaseRate) + marginTime) * 1000;
 
         return new Promise(resolve => { setTimeout(() => {resolve();}, sleepTime); });
-	  }
+	}
 
-    pubMove_speed (args) {
-        this.turtlebot_.publishScratchRos("move_speed:"+String(args.MOVING_SPEED));
-    }
 
-    pubRotation_speed (args) {
-        this.turtlebot_.publishScratchRos("rotation_speed:"+String(args.ROTATION_SPEED));
-    }
 
-    pubOdome_Initialize (args) {
-      this.turtlebot_.publishScratchRos("odome_initialize");
-    }
+subXtionScanDistance (args) {
+    return this.turtlebot_.isXtionSenserDistance;
+}
 
-    subRobotPoseX (args) {
-        return this.turtlebot_.isRobotPoseX;
-    }
-
-    subRobotPoseY (args) {
-        return this.turtlebot_.isRobotPoseY;
-    }
-
-    subRobotAngle (args) {
-        return this.turtlebot_.isRobotAngle;
-    }
-
-    drawImage(args) {
-  		let ip = this.turtlebot_.ipAddress;
-  		console.log(ip);
-  		if (ip == null) {
-  			ip = 'localhost'
-  		}
-  		this.viewer_.selectImageURL(ip);
-  	}
-
-    subQrdistance (args) {
-        return this.turtlebot_.isQrdistance;
-    }
-
-    subQrangle (args) {
-        return this.turtlebot_.isQrangle;
-    }
-
-    subQrrecod (args) {
-        return this.turtlebot_.isQrrecod;
-    }
-
+	drawImage(args) {
+		let ip = this.turtlebot_.ipAddress;
+		console.log(ip);
+		if (ip == null) {
+			ip = 'localhost'
+		}
+		//this.viewer_.selectImageURL(ip);
+	}
 
     getInfo () {
         return {
@@ -325,16 +283,16 @@ class Scratch3TurtleBotBlocks {
                     arguments: { TURTLEBOT_BUTTON: {type:ArgumentType.STRING, menu:'TURTLEBOT_BUTTON', defaultValue:"0"}}
                 },
                 {
-                    opcode: 'pubLED',
-                    text: formatMessage({id: 'turtlebot.pubLED', default: 'LEDを [TURTLEBOT_LED] にする'}),
-                    blockType: BlockType.COMMAND,
-                    arguments: { TURTLEBOT_LED: {type:ArgumentType.STRING, menu:'TURTLEBOT_LED', defaultValue:"消灯"}}
-                },
-                {
                     opcode: 'pubSound',
                     text: formatMessage({id: 'turtlebot.pubSound', default: '[TURTLEBOT_SOUND] のブザー'}),
                     blockType: BlockType.COMMAND,
                     arguments: { TURTLEBOT_SOUND: {type:ArgumentType.STRING, menu:'TURTLEBOT_SOUND', defaultValue:"スイッチON"}}
+                },
+                {
+                    opcode: 'pubLED',
+                    text: formatMessage({id: 'turtlebot.pubLED', default: 'LEDを [TURTLEBOT_LED] にする'}),
+                    blockType: BlockType.COMMAND,
+                    arguments: { TURTLEBOT_LED: {type:ArgumentType.STRING, menu:'TURTLEBOT_LED', defaultValue:"消灯"}}
                 },
                 {
                     opcode: 'pubGo_straight',
@@ -343,35 +301,23 @@ class Scratch3TurtleBotBlocks {
                     arguments: { GO_STRAIGHT:{type: ArgumentType.ANGLE, defaultValue:formatMessage({id:'turtlebot.turtlebot_go_straight',　default:'15'})}}
                 },
                 {
+                    opcode: 'pubForward_backward_moving_speed',
+                    text: formatMessage({id: 'turtlebot.pubForward_backward_moving_speed', default: '前後　[FORWARD_BACKWARD_MOVING_SPEED] m/sで移動する'}),
+                    blockType: BlockType.COMMAND,
+                    arguments: { FORWARD_BACKWARD_MOVING_SPEED:{type: ArgumentType.ANGLE, defaultValue:formatMessage({id:'turtlebot.turtlebot_forward_backward_moving_speed',　default:'0.1'})}}
+                },
+                {
                     opcode: 'pubAngle',
-                    text: formatMessage({id: 'turtlebot.pubAngle', default: '[TURTLEBOT_ANGLE] に角度を指定'}),
+                    text: formatMessage({id: 'turtlebot.pubAngle', default: '[TURTLEBOT_ANGLE] に角度を指定　--マイナスが右回転'}),
                     blockType: BlockType.COMMAND,
                     arguments: { TURTLEBOT_ANGLE:{type: ArgumentType.UNTIANGLE, defaultValue:formatMessage({id:'turtlebot.angle',　default:'90'})}}
                 },
                 {
-                    opcode: 'pubMove_speed',
-                    text: formatMessage({id: 'turtlebot.pubMove_speed', default: '前後　[MOVING_SPEED] cm/sで移動する'}),
-                    blockType: BlockType.COMMAND,
-                    arguments: { MOVING_SPEED:{type: ArgumentType.ANGLE, defaultValue:formatMessage({id:'turtlebot.move_speed',　default:'15'})}}
-                },
-                {
-                    opcode: 'pubRotation_speed',
-                    text: formatMessage({id: 'turtlebot.pubRotation_speed', default: '[ROTATION_SPEED] deg/sで回転する'}),
-                    blockType: BlockType.COMMAND,
-                    arguments: { ROTATION_SPEED:{type: ArgumentType.ANGLE, defaultValue:formatMessage({id:'turtlebot.rotation_speed',　default:'90'})}}
-                },
-                {
-                    opcode: 'pubOdome_Initialize',
-                    text: formatMessage({id: 'turtlebot.pubOdome_Initialize', default: 'TurtleBotの位置と角度を初期化'}),
-                    blockType: BlockType.COMMAND,
+                    opcode: 'subXtionScanDistance',
+                    text: formatMessage({id: 'turtlebot.subXtionScanDistance',　default: 'Xtionからの距離情報'}),
+                    blockType: BlockType.BOOLEAN,
                     arguments: {}
                 },
-                {
-        					opcode: 'drawImage',
-        					text: formatMessage({ id: 'newblocks.selectImage', default: 'カメラの映像を描画する' }),
-        					blockType: BlockType.COMMAND,
-        					arguments: {}
-				        },
                 {
                     opcode: 'boolBumper',
                     text: formatMessage({id: 'turtlebot.boolBumper',　default: '[TURTLEBOT_BUMPER] のバンパーが押されている'}),
@@ -383,43 +329,13 @@ class Scratch3TurtleBotBlocks {
                     text: formatMessage({id: 'turtlebot.boolButton',　default: '[TURTLEBOT_BUTTON] のボタンが押されている'}),
                     blockType: BlockType.BOOLEAN,
                     arguments: {TURTLEBOT_BUTTON:{type:ArgumentType.STRING, menu:'TURTLEBOT_BUTTON', defaultValue:"0"}}
-        				},
-                {
-                    opcode: 'subRobotPoseX',
-                    text: formatMessage({id: 'turtlebot.subRobotPoseX',　default: 'TurtleBotのx座標(m)'}),
-                    blockType: BlockType.BOOLEAN,
-                    arguments: {}
-                },
-                {
-                    opcode: 'subRobotPoseY',
-                    text: formatMessage({id: 'turtlebot.subRobotPoseY',　default: 'TurtleBotのy座標(m)'}),
-                    blockType: BlockType.BOOLEAN,
-                    arguments: {}
-                },
-                {
-                    opcode: 'subRobotAngle',
-                    text: formatMessage({id: 'turtlebot.subRobotAngle',　default: 'TurtleBotの角度(度)'}),
-                    blockType: BlockType.BOOLEAN,
-                    arguments: {}
-                },
-                {
-                  opcode: 'subQrdistance',
-                  text: formatMessage({ id: 'turtlebot.subQrdistance', default: 'カメラからQRコードまでの距離(cm)' }),
-                  blockType: BlockType.BOOLEAN,
-                  arguments: {}
-                },
-                {
-                  opcode: 'subQrangle',
-                  text: formatMessage({ id: 'turtlebot.subQrangle', default: 'カメラから見たQRコードの角度(度)' }),
-                  blockType: BlockType.BOOLEAN,
-                  arguments: {}
-                },
-                {
-                  opcode: 'subQrrecod',
-                  text: formatMessage({ id: 'turtlebot.subQrrecod', default: 'QRコードの文章' }),
-                  blockType: BlockType.BOOLEAN,
-                  arguments: {}
-        }
+				},
+				{
+					opcode: 'drawImage',
+					text: formatMessage({ id: 'newblocks.selectImage', default: 'カメラの映像を描画する' }),
+					blockType: BlockType.COMMAND,
+					arguments: {}
+				}
             ],
             menus: {
                 TURTLEBOT_NAME: ["TurtleBot","TurtleBot_1","TurtleBot_2","TurtleBot_3","TurtleBot_4","TurtleBot_5","TurtleBot_6","TurtleBot_7","TurtleBot_8","TurtleBot_9","TurtleBot_10","TurtleBot_11","TurtleBot_test"],
