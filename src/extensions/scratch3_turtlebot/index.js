@@ -42,6 +42,7 @@ class Turtlebot {
         this.isRobotPoseY = 0.0;
         this.isRobotAngle = 0.0;
         this.isQrdistance = 0;
+        this.isQrwidth = 0;
         this.isQrangle = 0.0;
         this.isQrrecod = "";
     }
@@ -95,6 +96,9 @@ class Turtlebot {
         }
         else if(this.isDataContainKeyword(receivedData,'qr_distance:')){
           this.isQrdistance = Number(receivedData.slice(12));
+        }
+        else if(this.isDataContainKeyword(receivedData,'qr_width:')){
+          this.isQrwidth = Number(receivedData.slice(9));
         }
         else if(this.isDataContainKeyword(receivedData,'qr_angle:')){
           this.isQrangle = Number(receivedData.slice(9));
@@ -271,6 +275,10 @@ class Scratch3TurtleBotBlocks {
         return this.turtlebot_.isQrdistance;
     }
 
+    subQrwidth (args) {
+        return this.turtlebot_.isQrwidth;
+    }
+
     subQrangle (args) {
         return this.turtlebot_.isQrangle;
     }
@@ -350,7 +358,7 @@ class Scratch3TurtleBotBlocks {
                 },
                 {
                     opcode: 'pubMove_speed',
-                    text: formatMessage({id: 'turtlebot.pubMove_speed', default: '前後　[MOVING_SPEED] cm/sで移動する'}),
+                    text: formatMessage({id: 'turtlebot.pubMove_speed', default: '[MOVING_SPEED] cm/sで移動する'}),
                     blockType: BlockType.COMMAND,
                     arguments: { MOVING_SPEED:{type: ArgumentType.ANGLE, defaultValue:formatMessage({id:'turtlebot.move_speed',　default:'15'})}}
                 },
@@ -362,7 +370,7 @@ class Scratch3TurtleBotBlocks {
                 },
                 {
                     opcode: 'pubOdome_Initialize',
-                    text: formatMessage({id: 'turtlebot.pubOdome_Initialize', default: 'TurtleBotの位置と角度を初期化'}),
+                    text: formatMessage({id: 'turtlebot.pubOdome_Initialize', default: 'TurtleBotの位置と角度の記録を初期化'}),
                     blockType: BlockType.COMMAND,
                     arguments: {}
                 },
@@ -386,25 +394,31 @@ class Scratch3TurtleBotBlocks {
         				},
                 {
                     opcode: 'subRobotPoseX',
-                    text: formatMessage({id: 'turtlebot.subRobotPoseX',　default: 'TurtleBotのx座標(m)'}),
+                    text: formatMessage({id: 'turtlebot.subRobotPoseX',　default: 'TurtleBotの現在のx座標位置(m)'}),
                     blockType: BlockType.BOOLEAN,
                     arguments: {}
                 },
                 {
                     opcode: 'subRobotPoseY',
-                    text: formatMessage({id: 'turtlebot.subRobotPoseY',　default: 'TurtleBotのy座標(m)'}),
+                    text: formatMessage({id: 'turtlebot.subRobotPoseY',　default: 'TurtleBotの現在のy座標位置(m)'}),
                     blockType: BlockType.BOOLEAN,
                     arguments: {}
                 },
                 {
                     opcode: 'subRobotAngle',
-                    text: formatMessage({id: 'turtlebot.subRobotAngle',　default: 'TurtleBotの角度(度)'}),
+                    text: formatMessage({id: 'turtlebot.subRobotAngle',　default: 'TurtleBotの現在の角度(度)'}),
                     blockType: BlockType.BOOLEAN,
                     arguments: {}
                 },
                 {
                   opcode: 'subQrdistance',
-                  text: formatMessage({ id: 'turtlebot.subQrdistance', default: 'カメラからQRコードまでの距離(cm)' }),
+                  text: formatMessage({ id: 'turtlebot.subQrdistance', default: 'カメラからQRコードまでの前後の距離(cm)' }),
+                  blockType: BlockType.BOOLEAN,
+                  arguments: {}
+                },
+                {
+                  opcode: 'subQrwidth',
+                  text: formatMessage({ id: 'turtlebot.subQrwidth', default: 'カメラからQRコードまでの左右の距離(cm)' }),
                   blockType: BlockType.BOOLEAN,
                   arguments: {}
                 },
