@@ -45,6 +45,7 @@ class Turtlebot {
         this.isQrwidth = 0;
         this.isQrangle = 0.0;
         this.isQrrecod = "";
+        this.isSpeech = "";
     }
 
     setRosIp(ipAddress){
@@ -105,6 +106,9 @@ class Turtlebot {
         }
         else if(this.isDataContainKeyword(receivedData,'qr_recode:')){
           this.isQrrecod = String(receivedData.slice(10));
+        }
+        else if(this.isDataContainKeyword(receivedData,'speech:')){
+          this.isSpeech = String(receivedData.slice(7));
         }
 
     }
@@ -287,6 +291,10 @@ class Scratch3TurtleBotBlocks {
         return this.turtlebot_.isQrrecod;
     }
 
+    pubSpeech (args) {
+      this.turtlebot_.publishScratchRos("speech:"+String(args.WORD));
+    }
+
 
     getInfo () {
         return {
@@ -380,6 +388,12 @@ class Scratch3TurtleBotBlocks {
         					blockType: BlockType.COMMAND,
         					arguments: {}
 				        },
+                {
+                    opcode: 'pubSpeech',
+                    text: formatMessage({id: 'turtlebot.pubSpeech', default: '[WORD]を発話する'}),
+                    blockType: BlockType.COMMAND,
+                    arguments: {WORD:{type:ArgumentType.STRING,defaultValue:"Hello"}}
+                },
                 {
                     opcode: 'boolBumper',
                     text: formatMessage({id: 'turtlebot.boolBumper',　default: '[TURTLEBOT_BUMPER] のバンパーが押されている'}),
