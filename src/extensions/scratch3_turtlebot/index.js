@@ -390,9 +390,9 @@ class Scratch3TurtleBotBlocks {
 				        },
                 {
                     opcode: 'pubSpeech',
-                    text: formatMessage({id: 'turtlebot.pubSpeech', default: '[WORD]を発話する'}),
+                    text: formatMessage({id: 'turtlebot.pubSpeech', default: '[WORD]と発話する'}),
                     blockType: BlockType.COMMAND,
-                    arguments: {WORD:{type:ArgumentType.STRING,defaultValue:"Hello"}}
+                    arguments: {WORD:{type:ArgumentType.STRING,defaultValue:"こんにちは"}}
                 },
                 {
                     opcode: 'boolBumper',
