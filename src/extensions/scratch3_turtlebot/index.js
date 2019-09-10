@@ -324,7 +324,7 @@ class Scratch3TurtleBotBlocks {
                 },
                 {
                     opcode: 'stopMotion',
-                    text: formatMessage({id: 'turtlebot.stopMotion', default: 'TurtleBotの動きを止める'}),
+                    text: formatMessage({id: 'turtlebot.stopMotion', default: 'TurtleBotの動きを止める（距離指定時用）'}),
                     blockType: BlockType.COMMAND,
                     arguments: {}
                 },
@@ -444,7 +444,7 @@ class Scratch3TurtleBotBlocks {
                 },
                 {
                   opcode: 'subQrrecod',
-                  text: formatMessage({ id: 'turtlebot.subQrrecod', default: 'QRコードの文章' }),
+                  text: formatMessage({ id: 'turtlebot.subQrrecod', default: 'QRコードの言葉' }),
                   blockType: BlockType.BOOLEAN,
                   arguments: {}
         }
