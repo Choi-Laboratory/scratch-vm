@@ -227,7 +227,7 @@ class Scratch3TurtleBotBlocks {
         var targetLength = Number(args.GO_STRAIGHT);
         if(targetLength < 0){ targetLength *= -1; }
         var marginTime  = 2;//[sec]
-        var movingSpeed = 40;//[cm/sec]
+        var movingSpeed = 30;//[cm/sec]
         var sleepTime   = ((targetLength / movingSpeed) + marginTime) * 1000;
 
         return new Promise(resolve => { setTimeout(() => {resolve();}, sleepTime); });
