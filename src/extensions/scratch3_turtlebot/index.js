@@ -46,6 +46,7 @@ class Turtlebot {
         this.isQrangle = 0.0;
         this.isQrrecod = "";
         this.isSpeech = "";
+        this.isRecognitionWord = "";
     }
 
     setRosIp(ipAddress){
@@ -109,6 +110,9 @@ class Turtlebot {
         }
         else if(this.isDataContainKeyword(receivedData,'speech:')){
           this.isSpeech = String(receivedData.slice(7));
+        }
+        else if(this.isDataContainKeyword(receivedData,'recognition_word:')){
+          this.isRecognitionWord = String(receivedData.slice(17));
         }
 
     }
@@ -291,6 +295,10 @@ class Scratch3TurtleBotBlocks {
         return this.turtlebot_.isQrrecod;
     }
 
+    subRecognition_word (args) {
+        return this.turtlebot_.isRecognitionWord;
+    }
+
     pubSpeech (args) {
       this.turtlebot_.publishScratchRos("speech:"+String(args.WORD));
     }
@@ -445,6 +453,12 @@ class Scratch3TurtleBotBlocks {
                 {
                   opcode: 'subQrrecod',
                   text: formatMessage({ id: 'turtlebot.subQrrecod', default: 'QRコードの言葉' }),
+                  blockType: BlockType.BOOLEAN,
+                  arguments: {}
+                },
+                {
+                  opcode: 'subRecognition_word',
+                  text: formatMessage({ id: 'turtlebot.subRecognition_word', default: '音声認識した言葉' }),
                   blockType: BlockType.BOOLEAN,
                   arguments: {}
         }
