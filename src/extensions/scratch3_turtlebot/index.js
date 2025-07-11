@@ -332,7 +332,7 @@ class Scratch3TurtleBotBlocks {
                 },
                 {
                     opcode: 'stopMotion',
-                    text: formatMessage({id: 'turtlebot.stopMotion', default: 'TurtleBotの動きを止める（距離指定時用）'}),
+                    text: formatMessage({id: 'turtlebot.stopMotion', default: 'TurtleBotの動きを止める'}),
                     blockType: BlockType.COMMAND,
                     arguments: {}
                 },
@@ -366,18 +366,12 @@ class Scratch3TurtleBotBlocks {
                     blockType: BlockType.COMMAND,
                     arguments: { GO_STRAIGHT:{type: ArgumentType.ANGLE, defaultValue:formatMessage({id:'turtlebot.turtlebot_go_straight',　default:'15'})}}
                 },
-                {
-                    opcode: 'pubAngle',
-                    text: formatMessage({id: 'turtlebot.pubAngle', default: '[TURTLEBOT_ANGLE] に角度を指定'}),
-                    blockType: BlockType.COMMAND,
-                    arguments: { TURTLEBOT_ANGLE:{type: ArgumentType.UNTIANGLE, defaultValue:formatMessage({id:'turtlebot.angle',　default:'90'})}}
-                },
-                {
-                    opcode: 'pubMove_speed',
-                    text: formatMessage({id: 'turtlebot.pubMove_speed', default: '[MOVING_SPEED] cm/sで移動する'}),
-                    blockType: BlockType.COMMAND,
-                    arguments: { MOVING_SPEED:{type: ArgumentType.ANGLE, defaultValue:formatMessage({id:'turtlebot.move_speed',　default:'15'})}}
-                },
+                // {
+                //     opcode: 'pubMove_speed',
+                //     text: formatMessage({id: 'turtlebot.pubMove_speed', default: '[MOVING_SPEED] cm/sで移動する'}),
+                //     blockType: BlockType.COMMAND,
+                //     arguments: { MOVING_SPEED:{type: ArgumentType.ANGLE, defaultValue:formatMessage({id:'turtlebot.move_speed',　default:'15'})}}
+                // },
                 {
                     opcode: 'pubRotation_speed',
                     text: formatMessage({id: 'turtlebot.pubRotation_speed', default: '[ROTATION_SPEED] deg/sで回転する'}),
