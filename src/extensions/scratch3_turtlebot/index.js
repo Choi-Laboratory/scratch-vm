@@ -336,12 +336,12 @@ class Scratch3TurtleBotBlocks {
                     blockType: BlockType.COMMAND,
                     arguments: {}
                 },
-                {
-                    opcode: 'pushBumper',
-                    text: formatMessage({id: 'turtlebot.pushBumper', default: '[TURTLEBOT_BUMPER] のバンパーが押された時'}),
-                    blockType: BlockType.HAT,
-                    arguments: { TURTLEBOT_BUMPER: {type:ArgumentType.STRING, menu:'TURTLEBOT_BUMPER', defaultValue:"前方"}}
-                },
+                // {
+                //     opcode: 'pushBumper',
+                //     text: formatMessage({id: 'turtlebot.pushBumper', default: '[TURTLEBOT_BUMPER] のバンパーが押された時'}),
+                //     blockType: BlockType.HAT,
+                //     arguments: { TURTLEBOT_BUMPER: {type:ArgumentType.STRING, menu:'TURTLEBOT_BUMPER', defaultValue:"前方"}}
+                // },
                 {
                     opcode: 'pushButton',
                     text: formatMessage({id: 'turtlebot.pushButton', default: '[TURTLEBOT_BUTTON] のボタンが押された時'}),
